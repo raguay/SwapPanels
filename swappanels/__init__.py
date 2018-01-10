@@ -1,6 +1,4 @@
-from fman import DirectoryPaneCommand, show_alert
-import os
-import zipfile
+from fman import DirectoryPaneCommand
 
 class SwapPanel(DirectoryPaneCommand):
     def __call__(self):
