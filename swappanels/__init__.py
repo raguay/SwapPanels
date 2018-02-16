@@ -19,15 +19,13 @@ class SwapPanel(DirectoryPaneCommand):
 
         def _setLeftPaneSelections():
             rpane.place_cursor_at(lpane_cursor)
-            if(lpane_selection):
-                for url in lpane_selection:
-                    rpane.toggle_selection(url)
+            for url in lpane_selection:
+                rpane.toggle_selection(url)
 
         def _setRightPaneSelections():
             lpane.place_cursor_at(rpane_cursor)
-            if(rpane_selection):
-                for url in rpane_selection:
-                    lpane.toggle_selection(url)
+            for url in rpane_selection:
+                lpane.toggle_selection(url)
 
             if panes[0] == currentPane:
                 panes[1].focus()
