@@ -34,5 +34,5 @@ class SwapPanel(DirectoryPaneCommand):
             else:
                 panes[0].focus()
 
-        lpane.set_path(rpane_path, _setLeftPaneSelections)
-        rpane.set_path(lpane_path, _setRightPaneSelections)
+        rpane.set_path(lpane_path, _setLeftPaneSelections)
+        lpane.set_path(rpane_path, _setRightPaneSelections)
