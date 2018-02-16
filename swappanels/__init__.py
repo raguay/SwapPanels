@@ -1,5 +1,5 @@
 from fman import DirectoryPaneCommand
-import os
+from time import sleep
 
 
 class SwapPanel(DirectoryPaneCommand):
@@ -17,18 +17,26 @@ class SwapPanel(DirectoryPaneCommand):
         def _setLeftPaneSelections():
             if(lpane_selection):
                 for url in lpane_selection:
-                    try:
-                        rpane.toggle_selection(url)
-                    except:
-                        pass
+                    trying = True
+                    while(trying):
+                        try:
+                            rpane.toggle_selection(url)
+                            trying = False
+                        except:
+                            sleep(0.1)
+                            trying = True
 
         def _setRightPaneSelections():
             if(rpane_selection):
                 for url in rpane_selection:
-                    try:
-                        lpane.toggle_selection(url)
-                    except:
-                        pass
+                    trying = True
+                    while(trying):
+                        try:
+                            lpane.toggle_selection(url)
+                            trying = False
+                        except:
+                            sleep(0.1)
+                            trying = True
 
         lpane.set_path(rpane_path, _setLeftPaneSelections)
         rpane.set_path(lpane_path, _setRightPaneSelections)
