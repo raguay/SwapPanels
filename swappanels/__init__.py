@@ -18,44 +18,17 @@ class SwapPanel(DirectoryPaneCommand):
         rpane_cursor = rpane.get_file_under_cursor()
 
         def _setLeftPaneSelections():
-            trying = True
-            while(trying):
-                try:
-                    rpane.place_cursor_at(lpane_cursor)
-                    trying = False
-                except:
-                    sleep(0.1)
-                    trying = True
+            rpane.place_cursor_at(lpane_cursor)
             if(lpane_selection):
                 for url in lpane_selection:
-                    trying = True
-                    while(trying):
-                        try:
-                            rpane.toggle_selection(url)
-                            trying = False
-                        except:
-                            sleep(0.1)
-                            trying = True
+                    rpane.toggle_selection(url)
 
         def _setRightPaneSelections():
-            trying = True
-            while(trying):
-                try:
-                    lpane.place_cursor_at(rpane_cursor)
-                    trying = False
-                except:
-                    sleep(0.1)
-                    trying = True
+            lpane.place_cursor_at(rpane_cursor)
             if(rpane_selection):
                 for url in rpane_selection:
-                    trying = True
-                    while(trying):
-                        try:
-                            lpane.toggle_selection(url)
-                            trying = False
-                        except:
-                            sleep(0.1)
-                            trying = True
+                    lpane.toggle_selection(url)
+
             if panes[0] == currentPane:
                 panes[1].focus()
             else:
