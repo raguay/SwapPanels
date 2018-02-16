@@ -17,12 +17,18 @@ class SwapPanel(DirectoryPaneCommand):
         def _setLeftPaneSelections():
             if(lpane_selection):
                 for url in lpane_selection:
-                    rpane.toggle_selection(url)
+                    try:
+                        rpane.toggle_selection(url)
+                    except:
+                        pass
 
         def _setRightPaneSelections():
             if(rpane_selection):
                 for url in rpane_selection:
-                    lpane.toggle_selection(url)
+                    try:
+                        lpane.toggle_selection(url)
+                    except:
+                        pass
 
         lpane.set_path(rpane_path, _setLeftPaneSelections)
         rpane.set_path(lpane_path, _setRightPaneSelections)
