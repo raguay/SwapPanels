@@ -1,5 +1,4 @@
 from fman import DirectoryPaneCommand
-from time import sleep
 
 
 class SwapPanel(DirectoryPaneCommand):
@@ -18,12 +17,14 @@ class SwapPanel(DirectoryPaneCommand):
         rpane_cursor = rpane.get_file_under_cursor()
 
         def _setLeftPaneSelections():
-            rpane.place_cursor_at(lpane_cursor)
+            if lpane_cursor is not None:
+                rpane.place_cursor_at(lpane_cursor)
             for url in lpane_selection:
                 rpane.toggle_selection(url)
 
         def _setRightPaneSelections():
-            lpane.place_cursor_at(rpane_cursor)
+            if rpane_cursor is not None:
+                lpane.place_cursor_at(rpane_cursor)
             for url in rpane_selection:
                 lpane.toggle_selection(url)
 
