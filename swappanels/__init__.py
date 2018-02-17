@@ -1,8 +1,16 @@
 from fman import DirectoryPaneCommand
 
+COMMAND_RUNNING = 0
 
 class SwapPanel(DirectoryPaneCommand):
     def __call__(self):
+        global COMMAND_RUNNING
+
+        if COMMAND_RUNNING > 0:
+            return
+        else:
+            COMMAND_RUNNING += 1
+
         panes = self.pane.window.get_panes()
 
         currentPane = self.pane
@@ -23,6 +31,7 @@ class SwapPanel(DirectoryPaneCommand):
                 rpane.toggle_selection(url)
 
         def _setRightPaneSelections():
+            global COMMAND_RUNNING
             if rpane_cursor is not None:
                 lpane.place_cursor_at(rpane_cursor)
             for url in rpane_selection:
@@ -32,6 +41,7 @@ class SwapPanel(DirectoryPaneCommand):
                 panes[1].focus()
             else:
                 panes[0].focus()
+            COMMAND_RUNNING -= 1
 
         rpane.set_path(lpane_path, _setLeftPaneSelections)
         lpane.set_path(rpane_path, _setRightPaneSelections)
